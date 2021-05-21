@@ -1,0 +1,17 @@
+kubectl set image deployment/nginx-deployment nginx=nginx:v2 –record
+kubectl rollout history deployment nginx-deployment
+kubectl rollout undo deployment/nginx-deployment --to-revision=1
+kubectl scale deployment nginx-deployment --replicas=3
+
+kubectl get horizontalpodautoscalers.autoscaling
+kubectl expose deployment nginx-demo --port=80 --target-port=80 --type=NodePort
+nohup webbench -c 2000 -t 120 http://10.110.211.156/ &
+watch -n1 'kubectl get hpa && kubectl top pod && kubectl get pod'
+kubectl exec web-1 -it -- bash
+kubectl run busybox --image=busybox --command -- sleep 3600
+kubectl exec busybox -it -- sh
+kubectl get endpoints
+kubectl get pod -w
+kubectl get pod -o wide
+wget web-1.nginx
+wget web-1.nginx.default.svc.cluster.local
