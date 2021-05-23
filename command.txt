@@ -15,3 +15,10 @@ kubectl get pod -w
 kubectl get pod -o wide
 wget web-1.nginx
 wget web-1.nginx.default.svc.cluster.local
+route -n
+iptables -t nat -L KUBE-SERVICES -n  | column -t
+iptables -t nat -L KUBE-NODEPORTS -n  | column -t
+iptables -t nat -L KUBE-SVC-QATUYZLPU4I4HE4S -n  | column -t
+iptables -t nat -L KUBE-SEP-PFJQYF4RCFOW43YM -n  | column -t
+kubectl edit deployments.apps nginx-deployment    # modify v1 to v2
+cat /root/curl.log | grep -i "This is version"
