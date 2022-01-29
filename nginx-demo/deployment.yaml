@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: dhutsj/nginx:v3
+        image: dhutsj/nginx:v4
         imagePullPolicy: Always
         ports:
         - containerPort: 80
