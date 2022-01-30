@@ -1,0 +1,53 @@
+name: Docker Image Build and Push
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events only for Dockerfile on main branch
+  push:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          logout: true
+
+      # Runs a set of commands using the runners shell
+      - name: build image
+        run: |
+          docker build -t dhutsj/nginx:${{ github.sha }} .
+          docker push dhutsj/nginx:${{ github.sha }}
+      - name: Trigger ArgoCD app sync
+        uses: InformaticsMatters/trigger-ci-action@1.0.1
+        with:
+          ci-owner: dhutsj
+          ci-repository: k8s_demo_yaml
+          ci-ref: refs/heads/main
+          ci-user: dhutsj
+          ci-user-token: ${{ secrets.TOKEN }}
+          ci-name: ArgoCD app sync
+          ci-inputs: >-
+            image=dhutsj/nginx
+            sha-tag=${{ github.sha }}
