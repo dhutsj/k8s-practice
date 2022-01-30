@@ -1,8 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-bases:
-- ../../base
 
 patchesStrategicMerge:
 - custom-env.yaml
@@ -11,4 +9,6 @@ patchesStrategicMerge:
 images:
 - name: dhutsj/nginx
   newName: dhutsj/nginx
-  newTag: v3
+  newTag: ff9aa8dea1cf755fde6cf52da3bd43d89a34368c
+resources:
+- ../../base
