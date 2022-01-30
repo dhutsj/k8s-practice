@@ -11,4 +11,4 @@ patchesStrategicMerge:
 images:
 - name: dhutsj/nginx
   newName: dhutsj/nginx
-  newTag: v4
+  newTag: v3
