@@ -74,7 +74,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: gray
-  annotations: 
+  annotations:
     nginx.ingress.kubernetes.io/service-match: |
             new-service: header("myname", /^myapp$/)
     nginx.ingress.kubernetes.io/service-weight: |
