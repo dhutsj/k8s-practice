@@ -1,4 +1,4 @@
-# k8s_demo_yaml
+# k8s-practice
 
 A control repo for k8s related resources, pod, deployment, service, ingress, hpa, pc, pvc, etc...There is also some resources for helm, kustomize and argocd related things. In the `.github` directory, I integrated all these things with GitHub Action workflow to demonstrate a full automation process for CI/CD.
 
@@ -10,7 +10,7 @@ In the `k8s_resource_yaml` directory of this repo, I expose some k8s built-in CR
 
 You can just run `kubectl apply -f $CRD.yaml` to deploy these CRD, I have made a cutomized nginx image according to `Dockerfile` and uploaded to [my docker hub repo](https://hub.docker.com/repository/docker/dhutsj/nginx/general). For the ingress, canary release and gray release, you need to install nginx ingress controller.
 
-### My nginx Helm Chart
+### My Nginx Helm Chart
 
 In the `nginx-helm-demo` directory, I made a helm chart for my customized nginx service which contains one deployment and one service. If you need ingress, you can reference the `nginx-ingress.yaml` in the `nginx-demo` directory.
 
