@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-nginx
+spec:
+  generators:
+  # This is a cluster generator, reference here https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/
+  - clusters: {}
+  template: 
+    metadata:
+      name: '{{name}}-my-nginx'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/dhutsj/k8s-practice.git
+        targetRevision: HEAD
+        path: nginx-demo
+      destination:
+        server: '{{server}}'
+        namespace: default
