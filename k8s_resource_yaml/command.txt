@@ -1,4 +1,4 @@
-kubectl set image deployment/nginx-deployment nginx=nginx:v2 –record
+kubectl set image deployment/nginx-deployment nginx=dhutsj/nginx:v4 –record
 kubectl rollout history deployment nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=1
 kubectl scale deployment nginx-deployment --replicas=3
@@ -20,5 +20,5 @@ iptables -t nat -L KUBE-SERVICES -n  | column -t
 iptables -t nat -L KUBE-NODEPORTS -n  | column -t
 iptables -t nat -L KUBE-SVC-QATUYZLPU4I4HE4S -n  | column -t
 iptables -t nat -L KUBE-SEP-PFJQYF4RCFOW43YM -n  | column -t
-kubectl edit deployments.apps nginx-deployment    # modify v1 to v2
+kubectl edit deployments.apps nginx-deployment    # modify v3 to v4
 cat /root/curl.log | grep -i "This is version"

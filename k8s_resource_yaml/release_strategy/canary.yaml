@@ -29,8 +29,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:v1
-        imagePullPolicy: Never
+        image: dhutsj/nginx:v3
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
 ---
@@ -53,8 +53,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:v2
-        imagePullPolicy: Never
+        image: dhutsj/nginx:v4
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
 ---

@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:v1
-        imagePullPolicy: Never
+        image: dhutsj/nginx:v3
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80

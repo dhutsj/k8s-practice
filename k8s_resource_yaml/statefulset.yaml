@@ -30,7 +30,8 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: nginx
-        image: nginx:v1
+        image: dhutsj/nginx:v3
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
           name: web
