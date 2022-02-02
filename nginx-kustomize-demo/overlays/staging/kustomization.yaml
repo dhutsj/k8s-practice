@@ -9,6 +9,9 @@ patchesStrategicMerge:
 images:
 - name: dhutsj/nginx
   newName: dhutsj/nginx
-  newTag: ff9aa8dea1cf755fde6cf52da3bd43d89a34368c
+  newTag: v3
+
 resources:
 - ../../base
+- pre-sync.yaml
+- post-sync.yaml
