@@ -2,7 +2,10 @@ kubectl set image deployment/nginx-deployment nginx=dhutsj/nginx:v4 –record
 kubectl rollout history deployment nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=1
 kubectl scale deployment nginx-deployment --replicas=3
-
+kubectl logs -f argocd-server-74bf76596b-mn9s8 -n argocd
+kubectl apply -f list-generator.yaml
+kubectl delete -f list-generator.yaml
+kubectl describe applicationset my-nginx
 kubectl get horizontalpodautoscalers.autoscaling
 kubectl expose deployment nginx-demo --port=80 --target-port=80 --type=NodePort
 nohup webbench -c 2000 -t 120 http://10.110.211.156/ &
