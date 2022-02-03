@@ -18,6 +18,8 @@ You can use `helm package nginx-helm-demo` to generate a chart package `nginx-he
 
 Helm installation is one of the way ArgoCD support to sync app. So try this folder in ArgoCD.
 
+![alt helm](img/helm.png)
+
 ### Kustomize
 
 In the `nginx-kustomize-demo` directory, I used kustomized to deploy my nginx. You can go to `overlays/prod` or `overlays/staging` folder. Run command `kustomize build ./{prod|staging}/ | kubectl apply -f -` to apply it. In the `staging` folder, I used [ArgoCD resource hook](https://argo-cd.readthedocs.io/en/stable/user-guide/resource_hooks/) `pre-sync` and `post-sync`.
