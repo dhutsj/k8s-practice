@@ -7,7 +7,7 @@ spec:
   # This is a list generator, reference here https://argocd-applicationset.readthedocs.io/en/stable/Generators-List/
   - list:
       elements:
-      - cluster: prod
+      - cluster: minikube
         url: https://kubernetes.default.svc
 #     - cluster: staging
 #       url: https://kubernetes.default.svc
