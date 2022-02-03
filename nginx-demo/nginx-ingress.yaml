@@ -10,7 +10,6 @@ spec:
       http:
         paths:
           - path: /
-            pathType: Prefix
             backend:
               service:
                 name: my-nginx-service
