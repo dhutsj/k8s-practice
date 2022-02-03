@@ -8,6 +8,8 @@ kubectl delete -f list-generator.yaml
 kubectl describe applicationset my-nginx
 kubectl get horizontalpodautoscalers.autoscaling
 kubectl expose deployment nginx-demo --port=80 --target-port=80 --type=NodePort
+kubectl config get-contexts
+kubectl config --kubeconfig=$HOME/.kube/tuesday.config use-context tuesday
 nohup webbench -c 2000 -t 120 http://10.110.211.156/ &
 watch -n1 'kubectl get hpa && kubectl top pod && kubectl get pod'
 kubectl exec web-1 -it -- bash
