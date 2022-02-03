@@ -12,7 +12,7 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: https://github.com/dhutsj/k8s-practice.git
+        repoURL: https://github.com/dhutsj/k8s-practice/
         targetRevision: HEAD
         path: nginx-demo
       destination:
