@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-nginx.fullname" . }}
+  name: {{ include "nginx-helm-demo.fullname" . }}
   labels:
-    {{- include "my-nginx.labels" . | nindent 4 }}
+    {{- include "nginx-helm-demo.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "my-nginx.selectorLabels" . | nindent 6 }}
+      {{- include "nginx-helm-demo.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "my-nginx.selectorLabels" . | nindent 8 }}
+        {{- include "nginx-helm-demo.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
