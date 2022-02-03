@@ -14,7 +14,7 @@ You can just run `kubectl apply -f $CRD.yaml` to deploy these CRD, I have made a
 
 In the `nginx-helm-demo` directory, I made a helm chart for my customized nginx service which contains one deployment and one service. If you need ingress, you can reference the `nginx-ingress.yaml` in the `nginx-demo` directory.
 
-You can use `helm package nginx-helm-demo` to build it and use `helm install my-nginx nginx-helm-demo-0.1.0.tgz` to install it. If you need to customize it, you can overwrite the `values.yaml` file and run `helm install my-nginx nginx-helm-demo-0.1.0.tgz -f my-values.yaml`.
+You can use `helm package nginx-helm-demo` to generate a chart package `nginx-helm-demo-0.1.0.tgz`, then use `helm install my-nginx nginx-helm-demo-0.1.0.tgz` to install it. If you need to customize it, you can overwrite the `values.yaml` file and run `helm install my-nginx nginx-helm-demo-0.1.0.tgz -f my-values.yaml`.
 
 Helm installation is one of the way ArgoCD support to sync app. So try this folder in ArgoCD.
 
