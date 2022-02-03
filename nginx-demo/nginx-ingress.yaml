@@ -8,7 +8,10 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: my-nginx-service
-          servicePort: 80
+          service:
+            name: my-nginx-service
+            port:
+              number: 80
   ingressClassName: nginx
