@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-git
+  namespace: argocd
+spec:
+  generators:
+    # matrix 'parent' generator
+    - matrix:
+        generators:
+          # git generator, 'child' #1
+          - git:
+              repoURL: https://github.com/dhutsj/k8s-practice.git
+              revision: HEAD
+              directories:
+                - path: argocd/*
+                - path: argocd/applicationset
+                  exclude: true
+          # cluster generator, 'child' #2
+          # Change the label according to https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/#deploying-to-the-local-cluster
+          - clusters:
+              selector:
+                matchLabels:
+                  argocd.argoproj.io/secret-type: cluster
+  template:
+    metadata:
+      name: '{{path.basename}}-{{name}}'
+      namespace: default
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/dhutsj/k8s-practice.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: '{{server}}'
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated: {}
+        syncOptions: 
+          - CreateNamespace=true
