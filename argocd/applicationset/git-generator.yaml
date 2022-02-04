@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 spec:
   generators:
+  # This is a git generator, reference here https://argocd-applicationset.readthedocs.io/en/stable/Generators-Git/
   - git:
       repoURL: https://github.com/dhutsj/k8s-practice.git
       revision: HEAD
