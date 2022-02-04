@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-nginx
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/dhutsj/k8s-practice.git
+      revision: HEAD
+      directories:
+      - path: nginx-demo/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      namespace: default
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/dhutsj/k8s-practice.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated: {}
+        syncOptions: 
+          - CreateNamespace=true
