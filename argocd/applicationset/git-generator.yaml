@@ -9,7 +9,9 @@ spec:
       repoURL: https://github.com/dhutsj/k8s-practice.git
       revision: HEAD
       directories:
-      - path: nginx-demo/*
+      - path: argocd/*
+      - path: argocd/applicationset
+        exclude: true
   template:
     metadata:
       name: '{{path.basename}}'
