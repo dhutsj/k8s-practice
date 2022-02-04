@@ -21,7 +21,7 @@ It also has a lot of useful sub-projects like [ApplicationSet](https://argocd-ap
 
 2. Choose the right generator for your projects. I have done some sample code for these four generators in `applicationset` folder. 
    * [List Generator](  https://argocd-applicationset.readthedocs.io/en/stable/Generators-List/)
-   * [Cluster Generator]( https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/)
+   * [Cluster Generator]( https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/): In Argo CD, managed clusters [are stored within Secrets](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#clusters) in the Argo CD namespace. So use `kubectl describe secret cluster-kubernetes.default.svc-3396314289 -n argocd` to check the cluster label.
    * [Git Generator]( https://argocd-applicationset.readthedocs.io/en/stable/Generators-Git/)
    * [Matrix Generator]( https://argocd-applicationset.readthedocs.io/en/stable/Generators-Matrix/)
 3. After you installed `applicationset` controller and the releted yaml file. Just run `kubectl apply -f $your_generator.yaml`. The related applications will be automatically deployed in multiple clusters.
