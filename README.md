@@ -4,13 +4,13 @@ A control repo for k8s related resources, pod, deployment, service, ingress, hpa
 
 
 
-## k8s resource yaml
+## k8s
 
 In the `k8s_resource_yaml` directory of this repo, I expose some k8s built-in CRD resource yaml files, like `pod.yaml`, `deployment.yaml`, `ingress.yaml`, `hpa.yaml` and some useful `kubectl` command in `command.txt` file.
 
 You can just run `kubectl apply -f $CRD.yaml` to deploy these CRD, I have made a cutomized nginx image according to `Dockerfile` and uploaded to [my docker hub repo](https://hub.docker.com/repository/docker/dhutsj/nginx/general). For the ingress, canary release and gray release, you need to install nginx ingress controller.
 
-### My Nginx Helm Chart
+### Helm
 
 In the `nginx-helm-demo` directory, I made a helm chart for my customized nginx service which contains one deployment and one service. If you need ingress, you can reference the `nginx-ingress.yaml` in the `nginx-demo` directory.
 
