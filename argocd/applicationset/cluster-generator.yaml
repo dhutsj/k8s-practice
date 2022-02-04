@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: my-nginx
+  namespace: argocd
 spec:
   generators:
   # This is a cluster generator, reference here https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/
@@ -9,6 +10,7 @@ spec:
   template: 
     metadata:
       name: '{{name}}-my-nginx'
+      namespace: default
     spec:
       project: "default"
       source:
@@ -18,3 +20,7 @@ spec:
       destination:
         server: '{{server}}'
         namespace: default
+      syncPolicy:
+        automated: {}
+        syncOptions: 
+          - CreateNamespace=true
