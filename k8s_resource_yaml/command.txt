@@ -3,6 +3,8 @@ kubectl rollout history deployment nginx-deployment
 kubectl rollout undo deployment/nginx-deployment --to-revision=1
 kubectl scale deployment nginx-deployment --replicas=3
 kubectl logs -f argocd-server-74bf76596b-mn9s8 -n argocd
+export KUBECONFIG=$KUBECONFIG:config-demo:config-demo-2
+kubectl get nodes --kubeconfig=$HOME/.kube/my_ack_config
 kubectl apply -f list-generator.yaml
 kubectl delete -f list-generator.yaml
 kubectl describe applicationset my-nginx
