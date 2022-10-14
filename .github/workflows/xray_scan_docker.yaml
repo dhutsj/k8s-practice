@@ -30,7 +30,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: build image
         run: |
-          docker build -t nginx:v1.0.0 ./k8s-practice/k8s_resource_yaml/Dockerfile
+          pwd
+          docker build -t nginx:v1.0.0 ./k8s_resource_yaml/Dockerfile
       - name: Install Jfrog CLI
         run: |
           echo "[jfrog-cli]" > jfrog-cli.repo;
