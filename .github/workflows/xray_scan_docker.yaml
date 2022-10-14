@@ -1,0 +1,46 @@
+name: Docker Image Build and Scan
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events only for Dockerfile on main branch
+  push:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'Dockerfile'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: build image
+        run: |
+          docker build -t nginx:v1.0.0 ./k8s-practice/k8s_resource_yaml/Dockerfile
+      - name: Install Jfrog CLI
+        run: |
+          echo "[jfrog-cli]" > jfrog-cli.repo;
+          echo "name=jfrog-cli" >> jfrog-cli.repo;
+          echo "baseurl=https://releases.jfrog.io/artifactory/jfrog-rpms" >> jfrog-cli.repo;
+          echo "enabled=1" >> jfrog-cli.repo;
+          sudo rpm --import https://releases.jfrog.io/artifactory/jfrog-gpg-public/jfrog_public_gpg.key
+          sudo mv jfrog-cli.repo /etc/yum.repos.d/;
+          sudo yum install -y jfrog-cli-v2-jf;
+      - name: Jfrog Xray CLI Scan docker image
+        run: |
+          jf config add --xray-url="https://ctt.dev.artifactory.tio.systems/xray/" --user="tian4" --password=${{ secrets.AF_API_KEY }} --interactive=false
+          CI=true jf docker scan nginx:v1.0.0 --url "https://ctt.dev.artifactory.tio.systems/xray" --user "tian4" --password ${{ secrets.AF_API_KEY }}
