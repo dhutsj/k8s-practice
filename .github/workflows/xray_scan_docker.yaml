@@ -42,5 +42,5 @@ jobs:
           sudo yum install -y jfrog-cli-v2-jf;
       - name: Jfrog Xray CLI Scan docker image
         run: |
-          jf config add --xray-url="https://ctt.dev.artifactory.tio.systems/xray/" --user="tian4" --password=${{ secrets.AF_API_KEY }} --interactive=false
-          CI=true jf docker scan nginx:v1.0.0 --url "https://ctt.dev.artifactory.tio.systems/xray" --user "tian4" --password ${{ secrets.AF_API_KEY }}
+          sudo jf config add --xray-url="https://ctt.dev.artifactory.tio.systems/xray/" --user="tian4" --password=${{ secrets.AF_API_KEY }} --interactive=false
+          sudo CI=true jf docker scan nginx:v1.0.0 --url "https://ctt.dev.artifactory.tio.systems/xray" --user "tian4" --password ${{ secrets.AF_API_KEY }}
