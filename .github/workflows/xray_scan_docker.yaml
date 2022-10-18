@@ -43,4 +43,4 @@ jobs:
       - name: Jfrog Xray CLI Scan docker image
         run: |
           sudo jf config add --xray-url="https://ctt.dev.artifactory.tio.systems/xray/" --user="tian4" --password=${{ secrets.AF_API_KEY }} --interactive=false
-          sudo CI=true jf docker scan nginx:v1.0.0 --url "https://ctt.dev.artifactory.tio.systems/xray" --user "tian4" --password ${{ secrets.AF_API_KEY }}
+          sudo CI=true jf docker scan nginx:v1.0.0
