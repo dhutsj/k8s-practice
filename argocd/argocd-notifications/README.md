@@ -9,4 +9,4 @@ You can refer to `email.yaml` to create the [Email](https://argocd-notifications
 You can refer to `patch_app.txt`.
 
 ### Slack
-You can refer to https://argocd-notifications.readthedocs.io/en/stable/services/slack/ for Slack notification.
+You can refer to the official [Slack notification](https://argocd-notifications.readthedocs.io/en/stable/services/slack/) guide.
