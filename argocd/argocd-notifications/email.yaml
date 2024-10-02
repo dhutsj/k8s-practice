@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-notifications-secret
+  namespace: argocd
+stringData:
+  email-username: jszxtsj@163.com
+  email-password: xxxxxxxxxx
+  slack-token: xoxb-xxxxx
+type: Opaque

@@ -1,0 +1,6 @@
+
+kubectl get apps test-app -n argocd -o yaml
+
+kubectl patch app test-app -n argocd -p '{"metadata": {"annotations": {"notifications.argoproj.io/subscribe.on-sync-succeeded.163":"dhutsj@gmail.com"}}}' --type merge
+kubectl patch app test-app -n argocd -p '{"metadata": {"annotations": {"notifications.argoproj.io/subscribe.on-sync-succeeded.slack":"my-channel1"}}}' --type merge
+kubectl patch app test-app -n argocd -p '{"metadata": {"annotations": {"notifications.argoproj.io/subscribe.on-sync-failed.slack":"my-channel1"}}}' --type merge
