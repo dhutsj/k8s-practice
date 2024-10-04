@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: player-toml-config
+  namespace: demo
+data:
+  config.toml: |
+    [user]
+    player_x.color = "blue"
+    player_y.color = "green"
+
+    [constant]
+    board_size = 3
+
+    [server]
+    url = "https://demo.example.com"
