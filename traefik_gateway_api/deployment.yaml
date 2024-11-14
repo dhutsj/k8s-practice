@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-hello-world-app
+  namespace: myapp
+  labels:
+    tags.datadoghq.com/service: tsj-python-demo
+    tags.datadoghq.com/env: dev
+    tags.datadoghq.com/version: "1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-hello-world-app
+  template:
+    metadata:
+      labels:
+        app: python-hello-world-app
+        tags.datadoghq.com/service: tsj-python-demo
+        tags.datadoghq.com/env: dev
+        tags.datadoghq.com/version: "1.0"
+        admission.datadoghq.com/enabled: "true"
+      annotations:
+        admission.datadoghq.com/python-lib.version: "2.11.2"
+    spec:
+      containers:
+      - name: python-hello-world-app
+        image: dhutsj/python_demo:helloworldv2
+        ports:
+        - containerPort: 5000  # Expose port 5000
