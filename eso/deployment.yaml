@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myapp
+  name: tsj-test
+  namespace: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - env:
+        - name: Key1
+          valueFrom:
+            secretKeyRef:
+              key: key1
+              name: tsj-test-secret-2024-12-26
+        - name: Key2
+          valueFrom:
+            secretKeyRef:
+              key: key2
+              name: tsj-test-secret-2024-12-26
+        image: busybox
+        command:
+          - sleep
+          - "3600"
+        name: tsj-test
+        # ports:
+        # - containerPort: 8678
+        #   name: http
+        # resources:
+        #   limits:
+        #     cpu: 500m
+        #     memory: 512Mi
+        #   requests:
+        #     cpu: 100m
+        #     memory: 128Mi
+        volumeMounts:
+        - mountPath: /mnt/secrets-store
+          name: secrets-store-inline
+          readOnly: true
+      serviceAccountName: myappsa
+      volumes:
+      - csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: tsj-test-secret-provider
+        name: secrets-store-inline

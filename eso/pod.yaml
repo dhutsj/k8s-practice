@@ -1,0 +1,40 @@
+# pod-busybox.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: myapp
+spec:
+  containers:
+  - image: busybox
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+    name: busybox
+    env:
+      - name: TEST_SECRET_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: tsj-test-secret
+            key: tsj-test-username
+            optional: false
+      - name: TEST_SECRET_ANOTHER_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: tsj-test-secret
+            key: tsj-test-another-username
+            optional: false
+      - name: TEST_API_1
+        valueFrom:
+          secretKeyRef:
+            name: tsj-test-secret
+            key: api1
+            optional: false
+      - name: TEST_API_2
+        valueFrom:
+          secretKeyRef:
+            name: tsj-test-secret
+            key: api2
+            optional: false
+  restartPolicy: Always
