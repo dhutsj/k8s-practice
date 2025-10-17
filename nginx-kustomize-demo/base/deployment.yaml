@@ -20,3 +20,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        env:
+          - name: TEST1
+            value: zzz
+          - name: TEST2
+            value: hhh
